@@ -1,0 +1,23 @@
+{
+  "name": "excel_demo",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/Mandilwar/Excel_Demo#readme",
+  "bugs": {
+    "url": "https://github.com/Mandilwar/Excel_Demo/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mandilwar/Excel_Demo.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "exceljs": "^4.4.0"
+  }
+}
