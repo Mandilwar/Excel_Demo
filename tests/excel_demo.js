@@ -1,23 +1,26 @@
 const exceljs = require('exceljs');
-async function read_excel()
+async function write_excel(search_value,replace_value,change_value,file_path)
+{
+    const workbook = new exceljs.Workbook();
+    await workbook.xlsx.readFile(file_path);
+    const worksheet = workbook.getWorksheet("Sheet1");
+    const output = await read_excel(worksheet,search_value,change_value);
+    const cell = worksheet.getCell(output.row,output.col+change_value.col_change);
+    cell.value = replace_value;
+    await workbook.xlsx.writeFile(file_path);
+}
+async function read_excel(worksheet, search_value)
 {
     let output = {row:-1,col:-1};
-    const workbook = new exceljs.Workbook();
-    await workbook.xlsx.readFile("/Users/L053981/Excel_Demo/practice1.xlsx");
-    const worksheet = workbook.getWorksheet("Sheet1");
-
     worksheet.eachRow((row,row_num)=>{
         row.eachCell((cell,col_num)=>{
-            console.log(cell.value);
-            if(cell.value === "Banana")
+            if(cell.value === search_value)
             {
                 output.row = row_num;
                 output.col = col_num;
             }
         });
     });
-    const cell = worksheet.getCell(output.row,output.col);
-    cell.value = "Republic";
-    await workbook.xlsx.writeFile("/Users/L053981/Excel_Demo/practice1.xlsx");
+    return output;
 }
-read_excel();
+write_excel("Samsung",350,{row_change:0,col_change:2},"/Users/L053981/Excel_Demo/practice1.xlsx");
